@@ -43,7 +43,7 @@ public class Matematika {
     }
 
     // Konversi hasil operasi ke pecahan
-    protected String konversiKePecahan(double nilai) {
+    public String konversiKePecahan(double nilai) {
         if (nilai % 1 == 0) {
 
             return String.format("%d", (int) nilai);
@@ -51,18 +51,18 @@ public class Matematika {
     
             int pembilang = (int) (nilai * 10000);  // Menentukan ketepatan hingga 4 desimal
             int penyebut = 10000;
-            int gcd = findGCD(pembilang, penyebut);  // Menyederhanakan pecahan
-            pembilang /= gcd;
-            penyebut /= gcd;
+            int FPB = cariFPB(pembilang, penyebut);  // Menyederhanakan pecahan
+            pembilang /= FPB;
+            penyebut /= FPB;
             return pembilang + "/" + penyebut;
         }
     }
 
     
-    private int findGCD(int a, int b) {
+    private int cariFPB(int a, int b) {
         if (b == 0) {
             return a;
         }
-        return findGCD(b, a % b);
+        return cariFPB(b, a % b);
     }
 }
